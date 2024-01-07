@@ -15,6 +15,12 @@ public class Member {
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
+    // 편의 메서드 1
+    public void setTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this);
+    }
+
     public Long getId() {
         return id;
     }
@@ -35,7 +41,5 @@ public class Member {
         return team;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
-    }
+
 }
