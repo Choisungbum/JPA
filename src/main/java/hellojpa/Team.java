@@ -15,14 +15,18 @@ public class Team {
     // mappedBy 가 있으면 연관관계 주인이 아님
     // members는 조회만 가능하고 등록 수정은 안됨
     // 1 : N -> N 쪽을 연관관계 주인으로 잡자 (외래키를 갖고 있기 때문)
-    @OneToMany(mappedBy = "team")
+//    @OneToMany(mappedBy = "team")
+//    private List<Member> members = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name = "TEAM_ID")
     private List<Member> members = new ArrayList<>();
 
     // 편의메서드2
-    public void addMember(Member member) {
-        member.setTeam(this);
-        members.add(member);
-    }
+//    public void addMember(Member member) {
+//        member.setTeam(this);
+//        members.add(member);
+//    }
 
     public Long getId() {
         return id;

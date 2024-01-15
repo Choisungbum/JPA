@@ -16,28 +16,18 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
 
             Member member = new Member();
             member.setName("member1");
-            // 연관관계 주인에만 값 설정
-            member.setTeam(team);
+
             em.persist(member);
 
-            // 역방향(주인이 아닌 방향) 연관관계 설정
+            Team team = new Team();
+            team.setName("teamA");
+            //
             team.getMembers().add(member);
 
-            em.flush();
-            em.clear();
-
-            Team findTeam = em.find(Team.class, team.getId());
-            List<Member> members = findTeam.getMembers();
-
-            System.out.println("================");
-            System.out.println("findTeam = " + findTeam);
-            System.out.println("================");
+            em.persist(team);
 
             tx.commit();
         } catch (Exception e) {
