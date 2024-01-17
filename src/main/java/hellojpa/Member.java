@@ -1,6 +1,7 @@
 package hellojpa;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Member {
@@ -18,6 +19,7 @@ public class Member {
     @OneToOne
     @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
+
 
     // 편의 메서드 1
 //    public void setTeam(Team team) {
