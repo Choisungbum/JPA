@@ -1,18 +1,18 @@
-package hellojpa;
+package jpabook.jpashop.domain;
 
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@DiscriminatorColumn // DTYPE -> 언떤 조인된 테이블에서 데이터가 들어왔는지 확인
-public class Item_ex {
-    @Id
-    @GeneratedValue
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn
+public abstract class Item_bk {
+    @Id @GeneratedValue
+    @Column(name = "ITEM_ID")
     private Long id;
-
     private String name;
-
     private int price;
+    private int stockQuantity;
+
 
     public Long getId() {
         return id;
@@ -36,6 +36,14 @@ public class Item_ex {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
 
 }

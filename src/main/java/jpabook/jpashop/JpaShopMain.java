@@ -1,6 +1,6 @@
 package jpabook.jpashop;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
+import jpabook.jpashop.domain.Order_bk;
+import jpabook.jpashop.domain.OrderItem_bk;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,10 +18,10 @@ public class JpaShopMain {
 
         try {
 
-            Order order = new Order();
+            Order_bk order = new Order_bk();
             em.persist(order);
 
-            OrderItem orderItem = new OrderItem();
+            OrderItem_bk orderItem = new OrderItem_bk();
             orderItem.setOrder(order);
             em.persist(orderItem);
 //            order.addOrderItem(order);

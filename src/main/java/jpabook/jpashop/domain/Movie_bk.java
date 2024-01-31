@@ -1,9 +1,6 @@
-package hellojpa;
+package jpabook.jpashop.domain;
 
-import javax.persistence.Entity;
-
-@Entity
-public class Movie extends Item {
+public class Movie_bk extends Item_bk {
     private String director;
     private String actor;
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "ORDERS")
-public class Order {
+public class Order_bk {
     @Id @GeneratedValue
     @Column(name = "ORDER_ID")
     private Long id;
@@ -18,10 +18,10 @@ public class Order {
     private Member member;
 
     @OneToMany(mappedBy = "order") // One(현재 객체)ToMany(연관된 객체), mappedBy = order -> 연관관계에있는 객체에서 현재객체의 name
-    private List<OrderItem> orderItems = new ArrayList<>();
+    private List<OrderItem_bk> orderItems = new ArrayList<>();
 
     // 편의 메서드
-    private void addOrderItem(OrderItem orderItem) {
+    private void addOrderItem(OrderItem_bk orderItem) {
         orderItems.add(orderItem);
         orderItem.setOrder(this);
     }
@@ -29,7 +29,7 @@ public class Order {
 
     private LocalDateTime orderdate;
     @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+    private OrderStatus_bk status;
 
     public Long getId() {
         return id;
@@ -56,11 +56,11 @@ public class Order {
         this.orderdate = orderdate;
     }
 
-    public OrderStatus getStatus() {
+    public OrderStatus_bk getStatus() {
         return status;
     }
 
-    public void setStatus(OrderStatus status) {
+    public void setStatus(OrderStatus_bk status) {
         this.status = status;
     }
 }

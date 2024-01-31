@@ -3,7 +3,7 @@ package jpabook.jpashop.domain;
 import javax.persistence.*;
 
 @Entity
-public class OrderItem {
+public class OrderItem_bk {
     @Id
     @GeneratedValue
     @Column(name = "ORDER_ITEM_ID")
@@ -11,25 +11,25 @@ public class OrderItem {
 
     @ManyToOne
     @JoinColumn(name = "ORDER_ID")
-    private Order order;
+    private Order_bk order;
     @ManyToOne
     @JoinColumn(name = "ITEM_ID")
 
-    private Item item;
+    private Item_bk item;
 
-    public Order getOrder() {
+    public Order_bk getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(Order_bk order) {
         this.order = order;
     }
 
-    public Item getItem() {
+    public Item_bk getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(Item_bk item) {
         this.item = item;
     }
 
