@@ -66,6 +66,8 @@ public class JpaMain_ex {
 //            member.setName("ZZZZZ");
 //            System.out.println("================================");
 
+
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

@@ -17,31 +17,33 @@ public class JpaMain {
 
         try {
 
-            Member member = new Member();
-            member.setName("hello");
-            member.setHomeAddress(new Address("city", "street", "zipcode"));
-            member.setWorkPeriod(new Period());
+            // 값 타입과 불변객체//////////////////////////////////////
+            Address address = new Address("city", "street", "zipcode");
 
+            Member member = new Member();
+            member.setName("member1");
+            member.setHomeAddress(address);
             em.persist(member);
-//            Child child1 = new Child();
-//            Child child2 = new Child();
-//
-//            Parent parent = new Parent();
-//            parent.addCHild(child1);
-//            parent.addCHild(child2);
-//
-//            //1.  모두 persist 해준다(Not CASECADE)
-////            em.persist(parent);
-////            em.persist(child1);
-////            em.persist(child2);
-//            // 2. CASECADE
-////            em.persist(parent);
-//            //3. 고아객체 제거 (orphanRemoval = true)
-//            em.persist(parent);
-//            em.flush();
-//            em.clear();
-//            Parent findParent = em.find(Parent.class, parent.getId());
-//            findParent.getChildList().remove(0);
+
+            Address copyAddress = new Address(address.getCity(), address.getStreet(), address.getZipcode());
+
+            Member member2 = new Member();
+            member2.setName("member2");
+            member2.setHomeAddress(copyAddress);
+            em.persist(member2);
+
+            member.getHomeAddress().setCity("newCity");
+
+            // 불변객체 생성 -> 생성자로 값을 초기화한 후 수정불가 (set -> x)
+            Member member3 = new Member();
+            member3.setName("member3");
+            member3.setHomeAddress(address);
+            em.persist(member3);
+
+            Address newAddress = new Address("NewCity", address.getStreet(), address.getZipcode());
+            member3.setHomeAddress(newAddress);
+
+            ///////////////////////////////////////////////////////
 
             tx.commit();
         } catch (Exception e) {
