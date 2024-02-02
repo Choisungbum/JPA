@@ -20,6 +20,10 @@ public class Order_bk {
     @OneToMany(mappedBy = "order") // One(현재 객체)ToMany(연관된 객체), mappedBy = order -> 연관관계에있는 객체에서 현재객체의 name
     private List<OrderItem_bk> orderItems = new ArrayList<>();
 
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery_bk delivery;
+
     // 편의 메서드
     private void addOrderItem(OrderItem_bk orderItem) {
         orderItems.add(orderItem);

@@ -1,20 +1,21 @@
 package jpabook.jpashop.domain;
 
+import hellojpa.BaseEntity;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-public class Member_bk {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "MEMBER_ID")
+public class Delivery_bk extends BaseEntity {
+    @Id
+    @GeneratedValue
     private Long id;
 
     @Embedded
     private Address_bk address;
+//    private
 
-    @OneToMany(mappedBy = "member")
-    private List<Order_bk> orders = new ArrayList<>();
+    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
+    private Order_bk order;
 
     public Long getId() {
         return id;
@@ -32,11 +33,12 @@ public class Member_bk {
         this.address = address;
     }
 
-    public List<Order_bk> getOrders() {
-        return orders;
+    public Order_bk getOrder() {
+        return order;
     }
 
-    public void setOrders(List<Order_bk> orders) {
-        this.orders = orders;
+    public void setOrder(Order_bk order) {
+        this.order = order;
     }
 }
+
